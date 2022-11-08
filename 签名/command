@@ -1,0 +1,7 @@
+
+//app签名
+
+openssl pkcs8 -in platform.pk8 -inform DER -outform PEM -out shared.priv.pem -nocrypt
+openssl pkcs12 -export -in platform.x509.pem -inkey shared.priv.pem -out shared.pk12 -name com.seedreality.seedserver
+提示password:输入android
+keytool -importkeystore -deststorepass seedserver -destkeypass seedserver -destkeystore seedserver.keystore -srckeystore shared.pk12 -srcstoretype PKCS12 -srcstorepass seedserver -alias com.seedreality.seedserver
